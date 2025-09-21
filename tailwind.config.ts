@@ -57,6 +57,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Dashboard specific colors
+        "dashboard-panel": "hsl(var(--dashboard-panel))",
+        "dashboard-border": "hsl(var(--dashboard-border))",
+        "dashboard-glow": "hsl(var(--dashboard-glow))",
+        "signal-green": "hsl(var(--signal-green))",
+        "signal-green-glow": "hsl(var(--signal-green-glow))",
+        "signal-red": "hsl(var(--signal-red))",
+        "signal-red-glow": "hsl(var(--signal-red-glow))",
       },
       borderRadius: {
         lg: "var(--radius)",
