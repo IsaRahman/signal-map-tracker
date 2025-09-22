@@ -94,7 +94,7 @@
     @apply bg-background text-foreground font-mono;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: auto;
   }
 }
 
