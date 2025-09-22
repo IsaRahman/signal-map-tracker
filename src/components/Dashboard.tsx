@@ -11,7 +11,7 @@ const Dashboard: React.FC = () => {
           <h2 className="text-xl font-semibold text-foreground">Vehicle Tracking</h2>
           <p className="text-sm text-muted-foreground">Real-time fleet monitoring</p>
         </div>
-        <div className="h-[calc(100%-80px)]">
+        <div className="h-100%">
           <VehicleMap />
         </div>
       </div>

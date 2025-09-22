@@ -59,7 +59,7 @@ export const VehicleMap: React.FC = () => {
           </p>
           
           {/* Live Vehicle Data Display */}
-          <div className="dashboard-panel p-4 max-w-sm">
+          <div className="dashboard-panel p-4 min-w-7xl">
             <div className="text-left">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-3 h-3 bg-signal-green rounded-full animate-pulse"></div>
@@ -74,15 +74,15 @@ export const VehicleMap: React.FC = () => {
           </div>
           
           {/* Simulated Movement Visualization */}
-          <div className="mt-6 p-4 dashboard-panel max-w-sm">
+          <div className="mt-6 p-4 dashboard-panel min-w-7xl">
             <div className="text-sm font-medium mb-2">Live Position Updates</div>
-            <div className="relative w-32 h-32 bg-muted/30 rounded-lg mx-auto">
+            <div className="relative w-64 h-64 bg-muted/30 rounded-lg mx-auto">
               <div 
                 className="absolute w-3 h-3 bg-signal-green rounded-full transition-all duration-1000 ease-in-out"
                 style={{
                   left: `${((vehicleData.coordinates[0] + 122.4194) * 1000) % 100}%`,
                   top: `${((vehicleData.coordinates[1] - 37.7749) * 1000) % 100}%`,
-                  transform: 'translate(-50%, -50%)',
+                  transform: 'translate(50%, 50%)',
                 }}
               >
                 <div className="absolute inset-0 bg-signal-green rounded-full animate-ping opacity-75"></div>
