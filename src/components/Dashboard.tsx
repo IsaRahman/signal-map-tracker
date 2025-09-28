@@ -1,5 +1,5 @@
 import React from 'react';
-import { VehicleMap } from './VehicleMap';
+import { TransportationNetwork } from './TransportationNetwork';
 import { TrafficSignals } from './TrafficSignals';
 
 const Dashboard: React.FC = () => {
@@ -8,19 +8,19 @@ const Dashboard: React.FC = () => {
       {/* Map Panel */}
       <div className="dashboard-panel">
         <div className="p-4 border-b border-dashboard-border">
-          <h2 className="text-xl font-semibold text-foreground">Vehicle Tracking</h2>
-          <p className="text-sm text-muted-foreground">Real-time fleet monitoring</p>
+          <h2 className="text-xl font-semibold text-foreground">Train Tracking</h2>
+          <p className="text-sm text-muted-foreground">Real-time Train monitoring</p>
         </div>
         <div className="h-100%">
-          <VehicleMap />
+          <TransportationNetwork />
         </div>
       </div>
 
       {/* Control Panel */}
       <div className="dashboard-panel">
         <div className="p-4 border-b border-dashboard-border">
-          <h2 className="text-xl font-semibold text-foreground">Traffic Control</h2>
-          <p className="text-sm text-muted-foreground">Signal timing system</p>
+          <h2 className="text-xl font-semibold text-foreground">Grade Crossing Signal Control</h2>
+          <p className="text-sm text-muted-foreground">Signal timing remaining</p>
         </div>
         <div className="p-6">
           <TrafficSignals />
@@ -31,3 +31,7 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
+
+// Temporal Solution for Code Run
+
+// Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
