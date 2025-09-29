@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, Polyline, GeoJSON } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline, GeoJSON, LayerGroup, LayersControl } from "react-leaflet";
 import L from "leaflet";
 import axios from 'axios';
 import "leaflet/dist/leaflet.css";
@@ -28,15 +28,66 @@ const redDotIcon = L.divIcon({
   iconAnchor: [6, 6], // center the dot
 });
 
+// Custom crossing icon
+const crossingIcon = L.divIcon({
+  className: "custom-crossing-icon",
+  html: `<div style="
+    width: 24px;
+    height: 24px;
+    position: relative;
+    transform: rotate(45deg);
+  ">
+    <div style="
+      position: absolute;
+      width: 24px;
+      height: 4px;
+      background: black;
+      top: 10px;
+    "></div>
+    <div style="
+      position: absolute;
+      width: 4px;
+      height: 24px;
+      background: black;
+      left: 10px;
+    "></div>
+  </div>`,
+  iconSize: [24, 24],
+  iconAnchor: [12, 12],
+});
+
 interface VehicleData {
   train_id: string;
   coordinates: [number, number]; // [lat, lng]
   timestamp: string;
 }
 
+interface Crossing {
+  id: string;
+  position: [number, number];
+  name: string;
+}
+
+const crossings: Crossing[] = [
+  {
+    id: "85",
+    position: [38.43222525534034, -104.29483988240153],
+    name: "Railroad Crossing #85"
+  },
+
+{
+  id: "86",
+  position: [38.422040, -104.338302],
+  name: "Railroad Crossing #86"
+  //Lat: 38.422040, Lng: -104.338302
+}
+
+
+];
+
 export const TransportationNetwork: React.FC = () => {
   const [vehicleData, setVehicleData] = useState<VehicleData & { speed?: number, train_linestring?: any }>({
-    train_id: "vehicle-1",
+    train_id: "Train-1",
     coordinates: [38.43222525534034, -104.29483988240153],
     timestamp: new Date().toISOString(),
     speed: 0,
@@ -119,6 +170,34 @@ export const TransportationNetwork: React.FC = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="© OpenStreetMap contributors"
         />
+
+
+  
+
+
+        
+        <LayersControl position="topright">
+          <LayersControl.Overlay name="Crossings">
+            <LayerGroup>
+              {crossings.map(crossing => (
+                <Marker
+                  key={crossing.id}
+                  position={crossing.position}
+                  icon={crossingIcon}
+                >
+                  <Popup>
+                    {crossing.name}
+                    <br />
+                    Lat: {crossing.position[0]}
+                    <br />
+                    Lng: {crossing.position[1]}
+                  </Popup>
+                </Marker>
+              ))}
+            </LayerGroup>
+          </LayersControl.Overlay>
+        </LayersControl>
+
         {/* Draw train linestring if available */}
         {vehicleData.train_linestring && Array.isArray(vehicleData.train_linestring) && (
           <Polyline
